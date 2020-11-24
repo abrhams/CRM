@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout CRM客户关系管理系统 - Layui</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./layui/layui.js"></script>
+    <script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="./js/utilSession.js"></script>
+    <script type="text/javascript" src="./js/data_manager.js"></script>
+    <script type="text/javascript" src="./js/data_customer.js"></script>
+    <script type="text/javascript" src="./js/data_customer.js"></script>
+    <script type="text/javascript" src="./js/data_total.js"></script>
+    <style type="text/css">
+/*     .layui-table-page {
+   
+    
+    position: fixed;
+    bottom: 0;
+}
+
+.layui-table-box {
+    margin-bottom: 30px;
+} */
+    </style>
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">CRM客户关系管理系统</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="">控制台</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">基础数据管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">数据字典管理</a></dd>
+                        <dd><a href="">产品信息查询</a></dd>
+                        <dd><a href="">用户信息查询</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">用户</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">其它</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">邮件管理</a></dd>
+                        <dd><a href="">消息管理</a></dd>
+                        <dd><a href="">授权管理</a></dd>
+                    </dl>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                        贤心
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">基本资料</a></dd>
+                        <dd><a href="">安全设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="login.html">退了</a></li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="javascript:;">营销管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">营销机会管理</a></dd>
+                            <dd><a href="javascript:;">营销开发计划</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">客户管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:customerdata();">客户信息管理</a></dd>
+                            <dd><a href="javascript:;">客户流失管理</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">服务管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">服务创建</a></dd>
+                            <dd><a href="javascript:;">服务分配</a></dd>
+                            <dd><a href="javascript:;">服务处理</a></dd>
+                            <dd><a href="javascript:;">服务反馈</a></dd>
+                            <dd><a href="javascript:;">服务存档</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">数据报表</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">数据贡献分析</a></dd>
+                            <dd><a href="javascript:;">数据构成分析</a></dd>
+                            <dd><a href="javascript:;">数据服务分析</a></dd>
+                            <dd><a href="javascript:;">数据流失分析</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">订单管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">订单录入</a></dd>
+                            <dd><a href="javascript:;">订单回款</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">管理员设置</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:managerdata();">管理员信息</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            
+            <div style="padding: 15px;">
+                <!-- 管理员表 -->
+                <div id="tab_manager" style="display:none;">
+                    <div class="demoTable">
+                                                                        搜索ID：
+                        <div class="layui-inline">
+                            <input class="layui-input" name="id" id="Reload_m" autocomplete="off">
+                        </div>
+                        <button class="layui-btn" data-type="reload">搜索</button>
+                    </div>
+                    <table class="layui-hide" id="data_manager" lay-filter="manager"></table>
+                </div>
+                <!-- 客户表 -->
+                <div id="tab_customer" style="display:none;">
+                    <div class="demoTable">
+                                                                        搜索ID：
+                        <div class="layui-inline">
+                            <input class="layui-input" name="id" id="Reload_c" autocomplete="off">
+                        </div>
+                        <button class="layui-btn" data-type="reload">搜索</button>
+                    </div>
+                    <table class="layui-hide" id="data_customer" lay-filter="customer"></table>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © crmLiuqn.com - CRM客户关系管理系统
+        </div>
+    </div>
+
+    <!-- 以下内容不显示 -->
+    <!--模仿bootstrap的模态框-->
+    <div id="motaikunag" style="display: none;">
+        <div class="layui-input-inline">
+            <!-- 用户名 -->
+            <div class="layui-inline" style="width: 85%">
+                <input type="text" id="user" name="account" required lay-verify="required" placeholder="请输入用户名"
+                    autocomplete="off" class="layui-input">
+            </div>
+            <!-- 对号 -->
+            <div class="layui-inline">
+                <i class="layui-icon" id="ri" style="color: green;font-weight: bolder;" hidden></i>
+            </div>
+            <!-- 错号 -->
+            <div class="layui-inline">
+                <i class="layui-icon" id="wr" style="color: red; font-weight: bolder;" hidden>ဆ</i>
+            </div>
+        </div>
+        <!-- 密码 -->
+        <div class="layui-input-inline">
+            <div class="layui-inline" style="width: 85%">
+                <input type="password" id="pwd" name="password" required lay-verify="required" placeholder="请输入密码"
+                    autocomplete="off" class="layui-input">
+            </div>
+            <!-- 对号 -->
+            <div class="layui-inline">
+                <i class="layui-icon" id="pri" style="color: green;font-weight: bolder;" hidden></i>
+            </div>
+            <!-- 错号 -->
+            <div class="layui-inline">
+                <i class="layui-icon" id="pwr" style="color: red; font-weight: bolder;" hidden>ဆ</i>
+            </div>
+        </div>
+        <!-- 确认密码 -->
+        <div class="layui-input-inline">
+            <div class="layui-inline" style="width: 85%">
+                <input type="password" id="rpwd" name="repassword" required lay-verify="required" placeholder="请确认密码"
+                    autocomplete="off" class="layui-input">
+            </div>
+            <!-- 对号 -->
+            <div class="layui-inline">
+                <i class="layui-icon" id="rpri" style="color: green;font-weight: bolder;" hidden></i>
+            </div>
+            <!-- 错号 -->
+            <div class="layui-inline">
+                <i class="layui-icon" id="rpwr" style="color: red; font-weight: bolder;" hidden>ဆ</i>
+            </div>
+        </div>
+        <!-- 管理员名称 -->
+        <div class="layui-input-inline">
+            <div class="layui-inline" style="width: 85%">
+                <input type="text" id="managername" name="managername" required lay-verify="required"
+                    placeholder="请输入名字" autocomplete="off" class="layui-input">
+            </div>
+            <!-- 对号 -->
+            <div class="layui-inline">
+                <i class="layui-icon" id="mnpri" style="color: green;font-weight: bolder;" hidden></i>
+            </div>
+            <!-- 错号 -->
+            <div class="layui-inline">
+                <i class="layui-icon" id="mnpwr" style="color: red; font-weight: bolder;" hidden>ဆ</i>
+            </div>
+        </div>
+        <!-- 创建人员 -->
+        <div class="layui-input-inline">
+            <div class="layui-inline" style="width: 85%">
+                <input type="text" id="createpl" name="createpl" required lay-verify="required"
+                    placeholder="请输入创建人或者推荐人" autocomplete="off" class="layui-input">
+            </div>
+            <!-- 对号 -->
+            <div class="layui-inline">
+                <i class="layui-icon" id="cplpri" style="color: green;font-weight: bolder;" hidden></i>
+            </div>
+            <!-- 错号 -->
+            <div class="layui-inline">
+                <i class="layui-icon" id="cplpwr" style="color: red; font-weight: bolder;" hidden>ဆ</i>
+            </div>
+        </div>
+        <!-- 权限等级 -->
+        <div class="layui-input-inline">
+            <div class="layui-inline" style="width: 85%">
+                <select id="accesslevel" name="accesslevel" lay-verify="required" placeholder="请输入创建人或者推荐人"
+                    lay-filter="alevel">
+                    <option value="0">请输入权限等级</option>
+                    <option value="1">1级</option>
+                    <option value="2">2级</option>
+                    <option value="3">3级</option>
+                    <option value="9">9级</option>
+                </select>
+            </div>
+            <!-- 对号 -->
+            <div class="layui-inline">
+                <i class="layui-icon" id="alpri" style="color: green;font-weight: bolder;" hidden></i>
+            </div>
+            <!-- 错号 -->
+            <div class="layui-inline">
+                <i class="layui-icon" id="alpwr" style="color: red; font-weight: bolder;" hidden>ဆ</i>
+            </div>
+        </div>
+
+        <div class="layui-input-inline login-btn" style="width: 85%">
+            <button type="submit" lay-submit lay-filter="sub" class="layui-btn">确认</button>
+        </div>
+        <div class="layui-input-inline login-btn" style="width: 85%">
+            <button type="submit" lay-submit lay-filter="sub" class="layui-btn">取消</button>
+        </div>
+    </div>
+
+    <script>
+        //JavaScript代码区域
+        layui.use('element', function () {
+            var element = layui.element;
+
+        });
+    </script>
+    <!-- 设置按钮 -->
+    <script type="text/html" id="bar_btn">
+         <a class='layui-btn layui-btn-xs' lay-event='add'>添加</a>
+         <a class='layui-btn layui-btn-xs layui-btn-danger' lay-event='del'>删除</a>
+         <a class='layui-btn layui-btn-xs' lay-event='edit'>编辑</a>
+    </script>
+
+</body>
+</html>

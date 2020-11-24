@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>Denglu</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- 登录注册 -->
+  <servlet>
+    <servlet-name>managerServlet</servlet-name>
+    <servlet-class>com.liuqn.controller.ManagerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>managerServlet</servlet-name>
+    <url-pattern>/managerServlet/*</url-pattern>
+  </servlet-mapping>
+  <!-- manager数据操作 -->
+  <servlet>
+    <servlet-name>managerController</servlet-name>
+    <servlet-class>com.liuqn.controller.ManagerDataController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>managerController</servlet-name>
+    <url-pattern>*.mdo</url-pattern>
+  </servlet-mapping>
+  <!-- customer数据操作 -->
+  <servlet>
+    <servlet-name>customerController</servlet-name>
+    <servlet-class>com.liuqn.controller.CustomerDataController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>customerController</servlet-name>
+    <url-pattern>*.cdo</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 过滤器  -->
+  <filter>
+    <filter-name>myfilter</filter-name>
+    <filter-class>com.liuqn.filter.MyFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>myfilter</filter-name>
+    <url-pattern>*.mdo</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>myfilter</filter-name>
+    <url-pattern>*.cdo</url-pattern>
+  </filter-mapping>
+</web-app>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>editmanager 编辑管理员</title>
+    <link rel="stylesheet" href="./layui/css/layui.css" media="all">
+</head>
+
+<body>
+    <div class="layui-row" style="margin:30px 120px 0px 20px;">
+        <div class="layui-col-md4">
+            <div class="grid-demo" style="margin:1px"></div>
+        </div>
+        <div class="layui-col-md3">
+            <div class="grid-demo">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">客户名字</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="customerName" name="" placeholder="请输入客户名字" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">客户年龄</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="customerAge" name="" placeholder="请输入客户年龄" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">客户电话号码</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="customerPhone" name="" placeholder="请确认客户电话号码" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">客户性别</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="customerGender" name="" placeholder="请输入客户性别" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">客户QQ</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="customerQQ" name="" placeholder="请输入客户QQ" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">客户微信</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="customerWX" name="" placeholder="请输入客户微信" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">营销人员ID</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="staffID" name="" placeholder="请输入营销人员ID" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">营销机会</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="marketingStatus" name="" placeholder="请输入营销机会" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <!-- <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md5">
+            <div class="grid-demo" style="margin:1px"></div>
+        </div>
+    </div>
+
+
+    <script src="./layui/layui.js"></script>
+    <script>
+        layui.use('form', function () {
+            var form = layui.form;
+
+            //各种基于事件的操作，下面会有进一步介绍
+        });
+    </script>
+</body>
+
+</html>
